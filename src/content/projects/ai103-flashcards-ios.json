@@ -1,0 +1,20 @@
+{
+  "slug": "ai103-flashcards-ios",
+  "title": "IQ Practice",
+  "summary": "A native iOS study app for Microsoft AI and GitHub Copilot topics, with resumable quizzes, progress trends, and optional AI study guidance.",
+  "description": [
+    "IQ Practice turns certification study into short, focused sessions. Its bundled quiz sets cover Microsoft AI, agents, and GitHub Copilot topics, including AI-103. Single-answer and multiple-answer questions support different practice formats; the content is study material, not official certification answers.",
+    "A SwiftUI dashboard brings together resumable sets, completed attempts, recent results, and accuracy over time. Practice progress is stored locally, and a results view separates questions that need more practice from those answered correctly.",
+    "User-triggered AI insights use aggregate performance by topic and difficulty to suggest strengths, focus areas, and learning resources. The request excludes question text, answer keys, selected answers, and personal identifiers. This optional Microsoft Foundry integration is a proof of concept, separate from the bundled practice experience."
+  ],
+  "services": ["Mobile development", "Learning tools", "AI agents"],
+  "technologies": ["Swift", "SwiftUI", "iOS", "Microsoft Foundry", "Microsoft Learn MCP"],
+  "metadata": {
+    "status": "Private project",
+    "highlights": [
+      "Resumable practice with local progress and attempt history",
+      "Single-answer and multiple-answer quiz formats",
+      "Optional study coaching from aggregate performance"
+    ]
+  }
+}

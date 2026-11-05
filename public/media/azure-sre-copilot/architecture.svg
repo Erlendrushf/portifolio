@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 672" role="img" aria-labelledby="title">
+  <title id="title">Azure SRE Copilot alert-to-issue pipeline</title>
+  <rect width="960" height="672" fill="#d9e8f4"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 10 5 0 10z" fill="#315e78"/>
+    </marker>
+    <style>
+      .node{fill:#eff7fb;stroke:#315e78;stroke-width:3}
+      .worker{fill:#c4dfed}
+      .label{fill:#244e6b;font:600 30px system-ui,sans-serif;text-anchor:middle;dominant-baseline:middle}
+      .line{fill:none;stroke:#315e78;stroke-width:3;marker-end:url(#arrow)}
+      .heading{fill:#244e6b;font:700 24px system-ui,sans-serif}
+    </style>
+  </defs>
+  <text class="heading" x="48" y="50">Site reliability</text>
+  <rect class="node" x="48" y="104" width="240" height="108" rx="16"/>
+  <text class="label" x="168" y="158">Azure Monitor</text>
+  <rect class="node" x="360" y="104" width="240" height="108" rx="16"/>
+  <text class="label" x="480" y="158">Receiver</text>
+  <rect class="node" x="672" y="104" width="240" height="108" rx="16"/>
+  <text class="label" x="792" y="158">Service Bus</text>
+  <rect class="node" x="48" y="310" width="240" height="108" rx="16"/>
+  <text class="label" x="168" y="364">Diagnostics</text>
+  <rect class="node worker" x="360" y="310" width="240" height="108" rx="16"/>
+  <text class="label" x="480" y="364">Worker</text>
+  <rect class="node" x="672" y="310" width="240" height="108" rx="16"/>
+  <text class="label" x="792" y="364">GitHub issue</text>
+  <rect class="node" x="360" y="504" width="240" height="108" rx="16"/>
+  <text class="label" x="480" y="558">Copilot SDK</text>
+  <path class="line" d="M288 158h62M600 158h62M792 212v43H480v45M360 364h-62M600 364h62M480 418v76"/>
+</svg>

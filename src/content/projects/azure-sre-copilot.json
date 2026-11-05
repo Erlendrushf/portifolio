@@ -1,0 +1,43 @@
+{
+  "slug": "azure-sre-copilot",
+  "title": "Azure SRE Copilot",
+  "summary": "A self-hosted, read-only SRE agent that investigates Azure Monitor alerts with the GitHub Copilot SDK and publishes verified incident reports to GitHub.",
+  "description": [
+    "Azure SRE Copilot accepts Azure Monitor alerts for Azure Container Apps, gathers bounded read-only diagnostics, and publishes an incident report to a trusted GitHub repository. It is designed to make evidence and uncertainty visible rather than to change Azure resources.",
+    "An Entra-authenticated receiver validates each alert against reviewed configuration and queues it durably on Service Bus. A worker revalidates the message, runs allowlisted diagnostics with row, byte, and time budgets, and hands the evidence to an isolated Copilot SDK session that can only use host-provided diagnostic tools.",
+    "The host validates and redacts the model's report, keeps gaps visible, and records publication intent before writing a GitHub issue. If a write is uncertain, it reconciles by marker instead of creating a duplicate. The service never remediates Azure resources and never closes issues.",
+    "The offline source, runtime-policy checks, publisher integration, Bicep validation, and in-process pipeline acceptance are implemented. Live tenant, Azure diagnostics, and GitHub publication remain gated on external setup."
+  ],
+  "services": ["Site reliability", "Automation", "AI agents"],
+  "technologies": [
+    "Python",
+    "FastAPI",
+    "GitHub Copilot SDK",
+    "GitHub MCP server",
+    "Azure Container Apps",
+    "Azure Service Bus",
+    "Azure Monitor",
+    "Bicep"
+  ],
+  "metadata": {
+    "role": "Design and implementation",
+    "status": "Offline gates complete; live deployment pending",
+    "highlights": [
+      "Read-only, allowlisted diagnostics with explicit budgets",
+      "Model isolated from Azure credentials and GitHub write tools",
+      "Marker-based reconciliation avoids duplicate issues"
+    ]
+  },
+  "media": {
+    "images": [
+      {
+        "src": "media/azure-sre-copilot/architecture.svg",
+        "alt": "Flow from Azure Monitor through a receiver, Service Bus, and worker to read-only diagnostics, a Copilot investigation, and a GitHub issue",
+        "caption": "Alert-to-issue pipeline, simplified."
+      }
+    ]
+  },
+  "links": [
+    { "label": "Source repository", "url": "https://github.com/atea/azure-sre-ghcp" }
+  ]
+}

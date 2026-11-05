@@ -27,6 +27,8 @@ function createWorkspace(name) {
   for (const entry of ['index.html', 'package.json', 'package-lock.json', 'vite.config.js', 'src', 'public', 'scripts']) {
     cpSync(path.join(projectRoot, entry), path.join(workspace, entry), { recursive: true })
   }
+  cpSync(path.join(projectRoot, 'tests/fixtures/projects'), path.join(workspace, 'src/content/projects'), { recursive: true })
+  cpSync(path.join(projectRoot, 'tests/fixtures/media/examples'), path.join(workspace, 'public/media/examples'), { recursive: true })
   symlinkSync(
     path.join(projectRoot, 'node_modules'),
     path.join(workspace, 'node_modules'),
@@ -199,6 +201,19 @@ for (const base of bases) {
         expect(await skip.evaluate((element) => getComputedStyle(element).outlineStyle)).not.toBe('none')
         await page.keyboard.press('Enter')
         await expect(page.getByRole('main')).toBeFocused()
+        if (width <= 760) {
+          const filters = page.getByRole('group', { name: 'Filter by service' })
+          expect(await filters.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true)
+          const lastFilter = page.getByRole('button', { name: 'Web design' })
+          await lastFilter.focus()
+          await page.keyboard.press('Enter')
+          await expect(lastFilter).toHaveAttribute('aria-pressed', 'true')
+          expect(await lastFilter.evaluate((button) => {
+            const group = button.closest('[role="group"]').getBoundingClientRect()
+            const item = button.getBoundingClientRect()
+            return item.left >= group.left && item.right <= group.right
+          })).toBe(true)
+        }
         const filter = page.getByRole('button', { name: 'Automation' })
         await filter.focus()
         await page.keyboard.press('Enter')
@@ -221,6 +236,19 @@ for (const base of bases) {
         assertClean()
       })
     }
+
+    test('uses the project illustration on the catalog and detail when there is no image', async ({ page }) => {
+      const { origin } = servers.get(base)
+      const assertClean = monitorPage(page, origin)
+      await page.goto(`${origin}${base}#/`)
+      const projectLink = page.getByRole('link', { name: 'View Voice-to-Vault', exact: true })
+      await expect(projectLink.locator('.project-art--voice')).toBeVisible()
+      await projectLink.click()
+      await expect(page.getByRole('heading', { level: 1, name: 'Voice-to-Vault' })).toBeFocused()
+      await expect(page.getByText('No preview has been provided for this project.')).toBeVisible()
+      await expect(page.locator('.detail-artwork .project-art--voice')).toBeVisible()
+      assertClean()
+    })
   })
 }
 

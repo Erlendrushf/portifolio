@@ -1,6 +1,14 @@
 import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import { PreviewImage } from '../components/PreviewImage.jsx'
+import { ProjectArtwork } from '../components/ProjectArtwork.jsx'
 import { site } from '../siteConfig.js'
+
+function ProjectVisual({ project, className = '', decorative = false, loading = 'lazy' }) {
+  const image = project.media?.images?.[0]
+  return image
+    ? <PreviewImage image={image} className={className} decorative={decorative} loading={loading} />
+    : <ProjectArtwork project={project} className={className} />
+}
 
 function ProjectCard({ project, catalogSearch }) {
   return (
@@ -12,13 +20,19 @@ function ProjectCard({ project, catalogSearch }) {
         aria-label={`View ${project.title}`}
       >
         <div className="project-cover">
-          <PreviewImage image={project.media?.images?.[0]} className="project-cover-image" />
+          <ProjectVisual project={project} className="project-cover-image" />
           <span className="card-arrow" aria-hidden="true">↗</span>
         </div>
         <div className="project-card-body">
           <p className="project-services">{project.services.join(' / ')}</p>
           <h3>{project.title}</h3>
           <p className="project-summary">{project.summary}</p>
+          {project.technologies?.length > 0 && (
+            <p className="project-technologies">{project.technologies.slice(0, 3).join(' · ')}</p>
+          )}
+          {project.metadata?.status === 'Fictional example' && (
+            <p className="example-label">Fictional example</p>
+          )}
         </div>
       </Link>
     </article>
@@ -33,12 +47,17 @@ export function Catalog({ projects }) {
   const selectedService = services.includes(requestedService) ? requestedService : 'All'
   const query = searchParams.get('q') ?? ''
   const normalizedQuery = query.trim().toLocaleLowerCase()
-  const matches = projects.filter((project) => {
-    const matchesService = selectedService === 'All' || project.services.includes(selectedService)
-    const searchable = [project.title, project.summary, ...project.services, ...(project.technologies ?? [])]
-    return matchesService && searchable.some((value) => value.toLocaleLowerCase().includes(normalizedQuery))
-  })
-  const featured = projects.find((project) => project.media?.images?.length) ?? projects[0]
+  const matches = projects
+    .filter((project) => {
+      const matchesService = selectedService === 'All' || project.services.includes(selectedService)
+      const searchable = [project.title, project.summary, ...project.services, ...(project.technologies ?? [])]
+      return matchesService && searchable.some((value) => value.toLocaleLowerCase().includes(normalizedQuery))
+    })
+    .sort((a, b) => Number(a.metadata?.status === 'Fictional example') - Number(b.metadata?.status === 'Fictional example'))
+  const featured = projects.find((project) => project.slug === site.featuredProject)
+    ?? projects.find((project) => project.metadata?.status !== 'Fictional example')
+    ?? projects.find((project) => project.media?.images?.length)
+    ?? projects[0]
 
   function updateFilter(key, value) {
     const next = new URLSearchParams(searchParams)
@@ -63,6 +82,11 @@ export function Catalog({ projects }) {
           >
             Explore the work <span aria-hidden="true">↓</span>
           </a>
+          <ul className="hero-topics" aria-label="Areas of work">
+            <li>AI agents</li>
+            <li>Cloud engineering</li>
+            <li>Developer tools</li>
+          </ul>
         </div>
         {featured && (
           <Link
@@ -72,21 +96,28 @@ export function Catalog({ projects }) {
             aria-label={`View ${featured.title}, featured project`}
           >
             <div className="hero-feature-image">
-              <PreviewImage image={featured.media?.images?.[0]} decorative loading="eager" />
+              <ProjectVisual project={featured} decorative loading="eager" />
             </div>
             <div className="hero-feature-caption">
-              <span><small>Take a closer look</small><strong>{featured.title}</strong></span>
+              <span><small>Featured project</small><strong>{featured.title}</strong></span>
               <span className="feature-arrow" aria-hidden="true">↗</span>
             </div>
           </Link>
         )}
       </section>
 
+      <section className="developer-introduction" aria-labelledby="developer-heading">
+        <h2 id="developer-heading">{site.about.heading}</h2>
+        <div>
+          {site.about.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        </div>
+      </section>
+
       <section className="collection" aria-labelledby="project-list" id="projects">
         <div className="collection-heading">
           <div>
             <h2 id="project-list" tabIndex="-1">Explore the work<span aria-hidden="true">.</span></h2>
-            <p>Find a project by service or search for something specific.</p>
+            <p>Browse by area, or search for a project, platform, or tool.</p>
           </div>
           <div className="search-field">
             <label htmlFor="project-search">Search projects</label>
@@ -107,19 +138,22 @@ export function Catalog({ projects }) {
         </div>
 
         <div className="filter-row">
-          <div className="service-filter" role="group" aria-label="Filter by service">
-            <span className="filter-label">Services</span>
-            {['All', ...services].map((service) => (
-              <button
-                key={service}
-                type="button"
-                className="filter-button"
-                aria-pressed={selectedService === service}
-                onClick={() => updateFilter('service', service === 'All' ? '' : service)}
-              >
-                {service}
-              </button>
-            ))}
+          <div className="filter-group">
+            <div className="service-filter" role="group" aria-label="Filter by service">
+              <span className="filter-label">Services</span>
+              {['All', ...services].map((service) => (
+                <button
+                  key={service}
+                  type="button"
+                  className="filter-button"
+                  aria-pressed={selectedService === service}
+                  onClick={() => updateFilter('service', service === 'All' ? '' : service)}
+                >
+                  {service}
+                </button>
+              ))}
+            </div>
+            <span className="filter-scroll-hint" aria-hidden="true">Scroll for more services →</span>
           </div>
           <button className="clear-filter" type="button" onClick={() => setSearchParams({}, { replace: true })}>
             Clear filters

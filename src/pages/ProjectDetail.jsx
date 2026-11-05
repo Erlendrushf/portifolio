@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { PreviewImage } from '../components/PreviewImage.jsx'
+import { ProjectArtwork } from '../components/ProjectArtwork.jsx'
 import { publicAssetUrl } from '../lib/assets.js'
 import { isSafePublicLink } from '../lib/urls.js'
 
@@ -166,6 +167,10 @@ export function ProjectDetail({ projectData }) {
             <section className="detail-section" aria-labelledby="preview-heading">
               <h2 id="preview-heading">Project preview</h2>
               <p>No preview has been provided for this project.</p>
+              <div className="detail-artwork">
+                <ProjectArtwork project={project} />
+              </div>
+              <p className="detail-art-caption">Illustration for this portfolio.</p>
             </section>
           )}
         </div>

@@ -1,0 +1,20 @@
+{
+  "slug": "agent-azure-toolset",
+  "title": "Agent Azure Toolset",
+  "summary": "Independent APIs and ingestion jobs that give AI agents structured access to cloud updates, service status, and a browsable knowledge collection.",
+  "description": [
+    "Agent Azure Toolset supplies deterministic services for tasks that do not need model reasoning. Independently deployable workloads expose blog and service-status feeds through OpenAPI, ingest RSS and CSV data, and make stored knowledge available through an API and web browser.",
+    "The ingestion job writes updates and retirement information to Azure Table Storage, using stable identifiers so repeated imports update existing records. A FastAPI proxy reads configured tables and Markdown documents with managed identity, while a React interface presents the collection alongside status incidents and blog posts.",
+    "Each workload owns its dependencies, tests, container image, and Azure configuration. Shared code is limited to cross-cutting behavior such as health, logging, and correlation. Server-configured feed sources keep the APIs focused rather than exposing arbitrary URL fetching."
+  ],
+  "services": ["AI agents", "Cloud engineering", "Automation"],
+  "technologies": ["Python", "FastAPI", "React", "TypeScript", "OpenAPI", "Azure Container Apps", "Azure Table Storage", "Azure Blob Storage", "Bicep"],
+  "metadata": {
+    "status": "Private project",
+    "highlights": [
+      "Deterministic tooling instead of model-driven data processing",
+      "Independent services and scheduled ingestion workloads",
+      "Managed-identity access to a browsable knowledge collection"
+    ]
+  }
+}
