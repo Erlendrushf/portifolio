@@ -1,0 +1,20 @@
+{
+  "slug": "voice-to-vault",
+  "title": "Voice-to-Vault",
+  "summary": "A batch pipeline that turns uploaded voice recordings into Obsidian inbox notes using local transcription.",
+  "description": [
+    "Voice-to-Vault connects spoken capture to a Markdown note workflow. The design uses phone recordings uploaded to Azure Blob Storage, then a local Python pipeline downloads unprocessed audio and transcribes it with faster-whisper.",
+    "The implementation writes a plain transcript note into an Obsidian inbox and preserves a separate raw transcript. Notes enter the vault's Git workflow, while audio remains outside Git. Organizing and filing the notes belongs to a separate downstream process.",
+    "Processing markers identify recordings already handled, and failed items produce visible failure notes in the inbox. The approach keeps transcription compute local and uses Azure as storage and transport rather than an always-running transcription service."
+  ],
+  "services": ["Automation", "Knowledge management"],
+  "technologies": ["Python", "faster-whisper", "Azure Blob Storage", "Obsidian", "Markdown", "Git"],
+  "metadata": {
+    "status": "Private project",
+    "highlights": [
+      "Local transcription with cloud storage as transport",
+      "Inbox notes with a separately preserved raw transcript",
+      "Failure visibility inside the note-taking workflow"
+    ]
+  }
+}

@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter, useLocation, useNavigate } from 'react-router-dom'
 import { afterEach, describe, expect, it } from 'vitest'
 import App from '../src/App.jsx'
+import { projects as catalogProjects } from '../src/content/index.js'
 import { publicAssetUrl } from '../src/lib/assets.js'
 
 const examples = [
@@ -50,6 +51,40 @@ function renderPortfolio({ projects = examples, path = '/' } = {}) {
 }
 
 afterEach(cleanup)
+
+describe('private-source portfolio entries', () => {
+  const entries = [
+    ['ai103-flashcards-ios', 'IQ Practice'],
+    ['agent-azure-toolset', 'Agent Azure Toolset'],
+    ['azure-teams-bot', 'Azure Teams Assistant'],
+    ['gh-admin-app', 'GitHub Administration Hub'],
+    ['github-copilot-usage-dashboard', 'Copilot Usage Dashboard'],
+    ['voice-to-vault', 'Voice-to-Vault'],
+    ['ghcp-canvas-docker', 'Docker Canvas for Copilot'],
+  ]
+
+  it('lists each entry as a separate navigable project', () => {
+    renderPortfolio({ projects: catalogProjects })
+    const collection = screen.getByRole('region', { name: 'Explore the work' })
+    for (const [slug, title] of entries) {
+      expect(within(collection).getByRole('link', { name: `View ${title}` }))
+        .toHaveAttribute('href', `/projects/${slug}`)
+    }
+  })
+
+  it.each(entries)('renders %s without source links or copied media', (slug, title) => {
+    const project = catalogProjects.find((entry) => entry.slug === slug)
+    expect(project).toBeDefined()
+    expect(project.links).toBeUndefined()
+    expect(project.media).toBeUndefined()
+    renderPortfolio({ projects: catalogProjects, path: `/projects/${slug}` })
+    expect(screen.getByRole('heading', { level: 1, name: title })).toBeInTheDocument()
+    for (const paragraph of project.description) {
+      expect(screen.getByText(paragraph)).toBeInTheDocument()
+    }
+    expect(screen.queryByRole('link', { name: /source repository/i })).not.toBeInTheDocument()
+  })
+})
 
 describe('project catalog', () => {
   it('derives service filters and displays each project with its real link', () => {

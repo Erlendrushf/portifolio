@@ -1,12 +1,14 @@
 # Project portfolio
 
-A React portfolio for presenting approved project stories, images, and videos without connecting to the projects' source repositories. The included projects and their original illustrations and silent video are fictional examples.
+A React portfolio for presenting approved project stories, images, and videos without connecting to the projects' source repositories. The collection includes real project summaries alongside the fictional Fieldnotes and Signal Board starter examples.
 
 ## Privacy first
 
 This portfolio is intended to live in a **separate public repository**. Its files, branches, Git history, deployed JavaScript, and everything in `public/` are public, including assets that no project references. Your private project repositories remain separate and are not accessed by the site or workflow.
 
 Before adding or committing anything, obtain any necessary permission and review descriptions, screenshots, recordings, metadata, URLs, and embedded data for confidential information. Keep private drafts outside the public repository: there is no private or unpublished record flag. Removing a file later does not erase it from Git history.
+
+The entries based on private repositories contain high-level descriptions only, with no source links or copied project media. A "Private project" status describes the source repository, not the visibility of the portfolio entry, and does not imply deployment or production acceptance. Screenshots and recordings can be added separately after reviewing their contents and disclosure rights.
 
 ## Run locally
 

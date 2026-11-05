@@ -1,0 +1,20 @@
+{
+  "slug": "gh-admin-app",
+  "title": "GitHub Administration Hub",
+  "summary": "A multi-organization administration app bringing GitHub access, repository health, security, Copilot adoption, and costs into one workspace.",
+  "description": [
+    "GitHub Administration Hub combines organization management and operational visibility in a single interface. Dedicated views cover members, teams, roles, repositories, audit events, webhooks, and GitHub Actions, reducing the need to move between separate administration pages.",
+    "Governance views surface repository posture, security alerts, public-repository oversight, and configuration drift. Copilot adoption and seat-management views sit alongside billing and cost-allocation tools so administrators can explore usage and spending in context.",
+    "The application pairs a React and TypeScript frontend with a Node.js and Express backend. GitHub App OAuth provides individual sign-in, and organization switching, cached queries, and API rate-limit visibility support work across multiple organizations. Available data and actions depend on the configured GitHub permissions."
+  ],
+  "services": ["Platform engineering", "Governance", "Development"],
+  "technologies": ["React", "TypeScript", "Node.js", "Express", "Octokit", "GitHub Apps", "Docker"],
+  "metadata": {
+    "status": "Private project",
+    "highlights": [
+      "Multi-organization administration in one workspace",
+      "Repository, access, security, and governance views",
+      "Copilot adoption and cost visibility alongside operations"
+    ]
+  }
+}

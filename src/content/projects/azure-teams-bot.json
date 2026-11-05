@@ -1,0 +1,20 @@
+{
+  "slug": "azure-teams-bot",
+  "title": "Azure Teams Assistant",
+  "summary": "A Microsoft Teams proof of concept that connects group-chat mentions and proactive notifications to a Microsoft Foundry assistant.",
+  "description": [
+    "Azure Teams Assistant brings cloud guidance into the conversation where teams already work. A group-chat mention is normalized and sent to Microsoft Foundry, with the response threaded back to the source activity through the Microsoft 365 Agents SDK.",
+    "The assistant is configured for Azure troubleshooting, technical guidance, service status, release announcements, retirements, and documentation research. Its intended scope also includes Microsoft 365 roadmap information and relevant engineering posts.",
+    "The Python service includes proactive notification handling and scheduled jobs, conversation persistence, and health and readiness endpoints. It targets Azure Container Apps and uses Azure credential integration for Foundry and Cosmos DB. The project is a proof of concept; tenant consent and live integration acceptance are separate setup steps."
+  ],
+  "services": ["AI agents", "Collaboration", "Cloud engineering"],
+  "technologies": ["Python", "Microsoft Teams", "Microsoft 365 Agents SDK", "Microsoft Foundry", "Azure Cosmos DB", "Azure Container Apps"],
+  "metadata": {
+    "status": "Proof of concept",
+    "highlights": [
+      "Group-chat mentions with replies to the source activity",
+      "Proactive notifications and scheduled routines",
+      "Cloud guidance delivered inside Teams"
+    ]
+  }
+}

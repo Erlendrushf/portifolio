@@ -1,0 +1,20 @@
+{
+  "slug": "github-copilot-usage-dashboard",
+  "title": "Copilot Usage Dashboard",
+  "summary": "A dedicated analytics dashboard for exploring GitHub Copilot adoption and usage across time, editors, languages, features, and models.",
+  "description": [
+    "Copilot Usage Dashboard makes usage metrics easier to explore than raw reports. Date-range controls, summary cards, interaction charts, and detailed adoption, code, CLI, chat, and agent views help users understand how Copilot is being used.",
+    "A one-shot .NET ingestion job collects GitHub Copilot reports and stores usage history in PostgreSQL. An ASP.NET Core API serves the React and TypeScript frontend, while a separate MCP endpoint exposes organization-wide analytics for tool-based queries.",
+    "The Azure architecture separates ingestion, API hosting, storage, and the static frontend. GitHub App integration, managed identities, Key Vault, and Bicep support configuration and delivery. Usage metrics describe activity and adoption; they are not, by themselves, a measure of productivity."
+  ],
+  "services": ["Analytics", "Developer experience", "Cloud engineering"],
+  "technologies": ["C#", ".NET", "ASP.NET Core", "Entity Framework Core", "PostgreSQL", "React", "TypeScript", "Primer React", "MCP", "Azure Container Apps", "Azure Static Web Apps", "Bicep"],
+  "metadata": {
+    "status": "Private project",
+    "highlights": [
+      "Historical usage with selectable reporting periods",
+      "Breakdowns by editor, language, feature, and model",
+      "Separate dashboard API, ingestion job, and MCP analytics"
+    ]
+  }
+}

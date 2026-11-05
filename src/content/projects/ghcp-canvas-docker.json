@@ -1,0 +1,20 @@
+{
+  "slug": "ghcp-canvas-docker",
+  "title": "Docker Canvas for Copilot",
+  "summary": "A GitHub Copilot canvas extension for inspecting and managing local Docker containers, images, and Compose projects alongside chat.",
+  "description": [
+    "Docker Canvas brings local container operations into the GitHub Copilot app. The panel supports container lists, lifecycle controls, logs, inspection, resource statistics, image pulls, and Compose project operations without a separate administration window.",
+    "The panel and agent share a Docker service, with operations requiring approval routed to a user-controlled review in the canvas. Approval history and recent activity make those actions visible, and the agent cannot approve its own requests.",
+    "The extension wraps the Docker CLI using Node.js and a plain HTML, CSS, and JavaScript interface without npm dependencies. Its scope is local Docker engines, not remote hosts; target checks and confirmation boundaries are part of the design."
+  ],
+  "services": ["Developer experience", "Platform engineering", "Automation"],
+  "technologies": ["JavaScript", "Node.js", "HTML", "CSS", "Docker", "Docker Compose", "GitHub Copilot"],
+  "metadata": {
+    "status": "Private project",
+    "highlights": [
+      "Container logs, statistics, and lifecycle controls beside chat",
+      "Shared service for panel and agent operations",
+      "User-controlled approvals for operations requiring review"
+    ]
+  }
+}
