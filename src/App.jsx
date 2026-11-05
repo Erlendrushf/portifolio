@@ -31,7 +31,14 @@ export default function App({ projectData = projects }) {
       <header className="site-header">
         <div className="site-container header-inner">
           <Link className="brand" to="/" aria-label={`${site.name}, home`}>
-            <span className="brand-mark" aria-hidden="true">✳</span>
+            <span className="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <rect x="4" y="4" width="10" height="10" rx="2" />
+                <rect x="18" y="4" width="10" height="10" rx="2" />
+                <rect x="4" y="18" width="10" height="10" rx="2" />
+                <path d="M18 23h10M23 18v10" />
+              </svg>
+            </span>
             <span>{site.name}</span>
           </Link>
           <nav aria-label="Main navigation">
@@ -49,7 +56,7 @@ export default function App({ projectData = projects }) {
       <footer className="site-footer">
         <div className="site-container footer-inner">
           <span>{site.name}</span>
-          <span>Made to be shared.</span>
+          <span>AI, cloud, and tools for everyday work.</span>
         </div>
       </footer>
     </>

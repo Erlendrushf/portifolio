@@ -1,5 +1,6 @@
 export const site = {
-  name: 'Project collection',
-  headline: 'Ideas, built to be explored.',
-  introduction: 'A collection of projects, prototypes, and the ideas behind them.',
+  name: 'Practical systems',
+  headline: 'Turning complex ideas into useful tools.',
+  introduction: 'A collection of AI agents, cloud services, and developer tools built to make work a little simpler.',
+  featuredProject: 'azure-sre-copilot',
 }

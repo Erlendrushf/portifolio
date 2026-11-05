@@ -7,6 +7,7 @@ import { afterEach, describe, expect, it } from 'vitest'
 import App from '../src/App.jsx'
 import { projects as catalogProjects } from '../src/content/index.js'
 import { publicAssetUrl } from '../src/lib/assets.js'
+import { site } from '../src/siteConfig.js'
 
 const examples = [
   {
@@ -87,6 +88,39 @@ describe('private-source portfolio entries', () => {
 })
 
 describe('project catalog', () => {
+  it('features the configured project and uses decorative artwork when it has no image', () => {
+    const featured = {
+      slug: site.featuredProject,
+      title: 'Featured real project',
+      summary: 'A real project without a preview image.',
+      description: ['A project description.'],
+      services: ['Cloud engineering'],
+      technologies: ['Azure'],
+    }
+    renderPortfolio({ projects: [examples[0], featured] })
+    const featureLink = screen.getByRole('link', { name: 'View Featured real project, featured project' })
+    expect(featureLink).toHaveAttribute('href', `/projects/${site.featuredProject}`)
+    expect(featureLink.querySelector('.project-art')).toHaveAttribute('aria-hidden', 'true')
+
+    const collection = screen.getByRole('region', { name: 'Explore the work' })
+    const projectLinks = within(collection).getAllByRole('link')
+    expect(projectLinks[0]).toHaveAccessibleName('View Featured real project')
+    expect(projectLinks[1]).toHaveAccessibleName('View Fieldnotes')
+    expect(within(collection).getByText('Fictional example')).toBeInTheDocument()
+  })
+
+  it('prefers a real project over fictional examples when the configured feature is absent', () => {
+    const realProject = {
+      slug: 'real-project',
+      title: 'Real project',
+      summary: 'A real project.',
+      description: ['A project description.'],
+      services: ['Automation'],
+    }
+    renderPortfolio({ projects: [examples[0], realProject] })
+    expect(screen.getByRole('link', { name: 'View Real project, featured project' })).toBeInTheDocument()
+  })
+
   it('derives service filters and displays each project with its real link', () => {
     renderPortfolio()
     const collection = screen.getByRole('region', { name: 'Explore the work' })
@@ -224,6 +258,8 @@ describe('project details and media', () => {
     const project = { ...examples[0], metadata: undefined, media: undefined, technologies: undefined }
     renderPortfolio({ projects: [project], path: '/projects/fieldnotes' })
     expect(screen.getByText('No preview has been provided for this project.')).toBeInTheDocument()
+    expect(screen.getByText('Illustration for this portfolio.')).toBeInTheDocument()
+    expect(document.querySelector('.detail-artwork .project-art')).toHaveAttribute('aria-hidden', 'true')
     expect(screen.getByRole('complementary', { name: 'Project details' })).toHaveTextContent('Web design, Development')
   })
 
@@ -267,7 +303,7 @@ describe('project details and media', () => {
     await user.click(within(collection).getByRole('link', { name: 'View Signal Board' }))
     expect(screen.getByRole('heading', { level: 1, name: 'Signal Board' })).toHaveFocus()
     await user.click(screen.getByRole('link', { name: 'All projects' }))
-    expect(screen.getByRole('heading', { level: 1, name: 'Ideas, built to be explored.' })).toHaveFocus()
+    expect(screen.getByRole('heading', { level: 1, name: site.headline })).toHaveFocus()
     expect(screen.getByRole('searchbox', { name: 'Search projects' })).toHaveValue('JavaScript')
     expect(screen.getByRole('button', { name: 'Automation' })).toHaveAttribute('aria-pressed', 'true')
   })

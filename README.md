@@ -19,7 +19,7 @@ npm ci
 npm run dev
 ```
 
-Open the local address printed by Vite. Edit `src/siteConfig.js` to change the visible site name, headline, and introduction; edit `index.html` to change the browser title and default description.
+Open the local address printed by Vite. Edit `src/siteConfig.js` to change the visible site name, headline, introduction, or featured project slug; edit `index.html` to change the browser title and default description. If the featured slug is missing, the site falls back to the first non-fictional project.
 
 Other commands:
 
@@ -90,6 +90,8 @@ Each image object requires `src` and meaningful `alt`; it may also contain `capt
 ### Media and accessibility
 
 Media paths are relative to `public/`: a file at `public/media/example/preview.png` is referenced as `media/example/preview.png`. Paths must point to existing files inside `public/`; absolute paths, traversal, backslashes, query strings, and fragments are not accepted. The validator checks file extensions and basic content signatures; for transcripts, it validates the entire file as UTF-8 and requires non-whitespace text.
+
+Projects without an image use decorative portfolio illustrations in the catalog and project detail, not screenshots of the project. Known project slugs have illustrations in `src/components/ProjectArtwork.jsx`; other projects use a generic graphic. The project detail still says when no preview has been provided.
 
 - Images and video posters: `.avif`, `.gif`, `.jpeg`, `.jpg`, `.png`, `.svg`, or `.webp`.
 - Videos: `.m4v`, `.mp4`, `.ogv`, or `.webm`. Browser codec support varies; test your chosen file.
