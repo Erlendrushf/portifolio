@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 840" role="img" aria-labelledby="title description">
+  <title id="title">Fieldnotes example interface</title>
+  <desc id="description">An illustrative interface for a collection of notes.</desc>
+  <rect width="1200" height="840" fill="#c6dfbd"/>
+  <circle cx="1095" cy="120" r="205" fill="#e2efc9"/>
+  <path d="M0 690c170-88 291-66 434 30s264 117 458 12 258-90 308-66v174H0Z" fill="#a5cead"/>
+  <rect x="142" y="106" width="916" height="628" rx="16" fill="#f8f9ef"/>
+  <path d="M142 174h916M349 174v560" fill="none" stroke="#d7e1d0" stroke-width="2"/>
+  <circle cx="177" cy="140" r="8" fill="#f0bd9b"/>
+  <circle cx="202" cy="140" r="8" fill="#e5d38d"/>
+  <circle cx="227" cy="140" r="8" fill="#abcaa7"/>
+  <g font-family="Arial, sans-serif">
+    <text x="385" y="149" fill="#304e3e" font-size="21" font-weight="700">fieldnotes</text>
+    <text x="178" y="225" fill="#567566" font-size="14" font-weight="700" letter-spacing="2">YOUR SPACE</text>
+    <rect x="170" y="246" width="148" height="44" rx="8" fill="#e4edda"/>
+    <text x="190" y="274" fill="#304e3e" font-size="17" font-weight="700">All notes</text>
+    <text x="190" y="326" fill="#708678" font-size="16">Collections</text>
+    <text x="190" y="373" fill="#708678" font-size="16">Saved ideas</text>
+    <text x="387" y="247" fill="#314b3e" font-size="42" font-weight="700">Room to think.</text>
+    <text x="389" y="283" fill="#72867a" font-size="17">A little space for ideas in progress.</text>
+    <rect x="388" y="327" width="264" height="252" rx="10" fill="#f0d7b3"/>
+    <rect x="671" y="327" width="264" height="252" rx="10" fill="#c8dfe2"/>
+    <circle cx="520" cy="416" r="57" fill="#e5a56e"/>
+    <path d="M463 430c45-67 101-83 145-38-27 58-87 88-145 38Z" fill="#9dbe83"/>
+    <path d="M708 466c56-108 104-118 188-28-43 71-121 94-188 28Z" fill="#668e91"/>
+    <circle cx="804" cy="409" r="25" fill="#f4db9d"/>
+    <text x="412" y="532" fill="#694d3a" font-size="19" font-weight="700">Small beginnings</text>
+    <text x="695" y="532" fill="#426468" font-size="19" font-weight="700">A place to pause</text>
+    <text x="388" y="642" fill="#788d7c" font-size="14">A FICTIONAL EXAMPLE FOR THIS PORTFOLIO</text>
+  </g>
+</svg>

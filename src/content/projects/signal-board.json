@@ -1,0 +1,30 @@
+{
+  "slug": "signal-board",
+  "title": "Signal Board",
+  "summary": "A fictional example of a calmer way to see moving parts at a glance.",
+  "description": [
+    "Signal Board is an illustrative dashboard concept that turns a collection of updates into a clearer overview.",
+    "The silent preview shows a fictional dashboard with colored status rows and gently moving bars. It is generated artwork, not a recording of a real client or production system."
+  ],
+  "services": ["Automation", "Development"],
+  "technologies": ["JavaScript", "Data visualization"],
+  "metadata": {
+    "role": "Product concept",
+    "status": "Fictional example",
+    "period": "Prototype",
+    "highlights": ["A clear overview", "Thoughtful information hierarchy"]
+  },
+  "media": {
+    "images": [
+      {
+        "src": "media/examples/signal-board.svg",
+        "alt": "Fictional Signal Board dashboard with colored project status rows",
+        "caption": "A made-up dashboard for demonstration."
+      }
+    ],
+    "video": {
+      "src": "media/examples/signal-motion.webm",
+      "poster": "media/examples/signal-board.svg"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+name: Build and deploy portfolio
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out portfolio
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24.15.0'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
+      - name: Validate and build
+        env:
+          BASE_OVERRIDE: ${{ vars.PORTFOLIO_BASE_PATH }}
+        run: |
+          owner="${GITHUB_REPOSITORY%%/*}"
+          repository="${GITHUB_REPOSITORY#*/}"
+          owner_site="$(printf '%s.github.io' "$owner" | tr '[:upper:]' '[:lower:]')"
+          repository_lower="$(printf '%s' "$repository" | tr '[:upper:]' '[:lower:]')"
+          if [[ -n "$BASE_OVERRIDE" ]]; then
+            export PORTFOLIO_BASE_PATH="$BASE_OVERRIDE"
+          elif [[ "$repository_lower" == "$owner_site" ]]; then
+            export PORTFOLIO_BASE_PATH="/"
+          else
+            export PORTFOLIO_BASE_PATH="/${repository}/"
+          fi
+          npm run build
+      - name: Upload Pages artifact
+        if: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: ./dist
+
+  deploy:
+    if: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

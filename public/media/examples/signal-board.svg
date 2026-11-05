@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 840" role="img" aria-labelledby="title description">
+  <title id="title">Signal Board example interface</title>
+  <desc id="description">An illustrative dashboard showing fictional status information.</desc>
+  <rect width="1200" height="840" fill="#d4d7f0"/>
+  <path d="M0 605c185-117 277-43 416 32s294 89 472-37 250-92 312-52v292H0Z" fill="#b9c3e3"/>
+  <circle cx="1055" cy="160" r="176" fill="#ece7fa"/>
+  <rect x="142" y="105" width="916" height="630" rx="16" fill="#f9f9fc"/>
+  <rect x="142" y="105" width="190" height="630" rx="16" fill="#273553"/>
+  <path d="M316 105h16v630h-16Z" fill="#273553"/>
+  <g font-family="Arial, sans-serif">
+    <circle cx="182" cy="151" r="13" fill="#b8cbf0"/>
+    <text x="207" y="158" fill="#f3f5ff" font-size="19" font-weight="700">signal board</text>
+    <rect x="162" y="214" width="150" height="42" rx="7" fill="#455578"/>
+    <text x="180" y="241" fill="#fff" font-size="15" font-weight="700">Overview</text>
+    <text x="180" y="299" fill="#b3bfda" font-size="15">Activity</text>
+    <text x="180" y="348" fill="#b3bfda" font-size="15">Projects</text>
+    <text x="380" y="176" fill="#273553" font-size="38" font-weight="700">A clearer view.</text>
+    <text x="382" y="212" fill="#7a859c" font-size="17">An illustrative overview of work in progress.</text>
+    <rect x="380" y="257" width="625" height="118" rx="10" fill="#e7edfc"/>
+    <circle cx="420" cy="297" r="11" fill="#7c98d5"/>
+    <text x="446" y="302" fill="#344769" font-size="19" font-weight="700">Making space for the important things</text>
+    <text x="446" y="333" fill="#6d7e9f" font-size="15">A fictional dashboard concept.</text>
+    <text x="380" y="433" fill="#344769" font-size="19" font-weight="700">Recent activity</text>
+    <path d="M380 463h625M380 524h625M380 585h625M380 646h625" stroke="#e0e4ee" stroke-width="2"/>
+    <circle cx="399" cy="493" r="8" fill="#8bbba4"/>
+    <circle cx="399" cy="554" r="8" fill="#e5b78b"/>
+    <circle cx="399" cy="615" r="8" fill="#a29ccc"/>
+    <text x="422" y="499" fill="#475875" font-size="16">A thoughtful starting point</text>
+    <text x="422" y="560" fill="#475875" font-size="16">A little more clarity</text>
+    <text x="422" y="621" fill="#475875" font-size="16">A useful next step</text>
+    <text x="381" y="695" fill="#7a859c" font-size="13">FICTIONAL EXAMPLE</text>
+  </g>
+</svg>

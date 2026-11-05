@@ -1,0 +1,26 @@
+{
+  "slug": "fieldnotes",
+  "title": "Fieldnotes",
+  "summary": "A fictional example of a place to collect ideas and make sense of them.",
+  "description": [
+    "Fieldnotes is an illustrative concept for organizing ideas, references, and work in progress in one thoughtful space.",
+    "This example is here to show how a project story can be presented without sharing the source code behind it."
+  ],
+  "services": ["Web design", "Development"],
+  "technologies": ["React", "Vite"],
+  "metadata": {
+    "role": "Design and development",
+    "status": "Fictional example",
+    "period": "Concept",
+    "highlights": ["Organized content", "Responsive interface"]
+  },
+  "media": {
+    "images": [
+      {
+        "src": "media/examples/fieldnotes.svg",
+        "alt": "Fictional Fieldnotes interface with a collection of illustrated notes",
+        "caption": "An illustrative interface, created for this portfolio."
+      }
+    ]
+  }
+}
