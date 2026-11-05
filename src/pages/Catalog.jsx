@@ -106,6 +106,13 @@ export function Catalog({ projects }) {
         )}
       </section>
 
+      <section className="developer-introduction" aria-labelledby="developer-heading">
+        <h2 id="developer-heading">{site.about.heading}</h2>
+        <div>
+          {site.about.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        </div>
+      </section>
+
       <section className="collection" aria-labelledby="project-list" id="projects">
         <div className="collection-heading">
           <div>

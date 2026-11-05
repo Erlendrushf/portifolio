@@ -97,6 +97,14 @@ describe('private-source portfolio entries', () => {
 })
 
 describe('project catalog', () => {
+  it('shows the developer introduction from site configuration', () => {
+    renderPortfolio()
+    const introduction = screen.getByRole('region', { name: site.about.heading })
+    for (const paragraph of site.about.paragraphs) {
+      expect(within(introduction).getByText(paragraph)).toBeInTheDocument()
+    }
+  })
+
   it('features the configured project and uses decorative artwork when it has no image', () => {
     const featured = {
       slug: site.featuredProject,

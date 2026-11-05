@@ -19,7 +19,7 @@ npm ci
 npm run dev
 ```
 
-Open the local address printed by Vite. Edit `src/siteConfig.js` to change the visible site name, headline, introduction, or featured project slug; edit `index.html` to change the browser title and default description. If the featured slug is missing, the site falls back to the first non-fictional project.
+Open the local address printed by Vite. Edit `src/siteConfig.js` to change the visible site name, headline, introduction, developer biography (`about`), or featured project slug; edit `index.html` to change the browser title and default description. If the featured slug is missing, the site falls back to the first non-fictional project.
 
 Other commands:
 

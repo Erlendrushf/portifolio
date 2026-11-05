@@ -206,6 +206,35 @@ input {
   text-decoration: none;
 }
 
+.developer-introduction {
+  display: grid;
+  grid-template-columns: minmax(0, 0.65fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 80px);
+  padding-block: 48px 56px;
+  border-top: 1px solid var(--line);
+}
+
+.developer-introduction h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.developer-introduction p {
+  max-width: 70ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.developer-introduction p + p {
+  margin-top: 18px;
+}
+
 .hero-feature-image,
 .project-cover {
   position: relative;
@@ -854,6 +883,12 @@ input {
 }
 
 @media (max-width: 760px) {
+  .developer-introduction {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-block: 36px 42px;
+  }
+
   .hero {
     grid-template-columns: 1fr;
     gap: 40px;
