@@ -54,6 +54,15 @@ function renderPortfolio({ projects = examples, path = '/' } = {}) {
 afterEach(cleanup)
 
 describe('private-source portfolio entries', () => {
+  it('excludes fictional starters from the shipped catalog', () => {
+    expect(catalogProjects.some((project) => ['fieldnotes', 'signal-board'].includes(project.slug))).toBe(false)
+    expect(catalogProjects.some((project) => project.metadata?.status === 'Fictional example')).toBe(false)
+    renderPortfolio({ projects: catalogProjects })
+    expect(screen.queryByText('Starter examples are fictional.')).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: 'View Fieldnotes' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: 'View Signal Board' })).not.toBeInTheDocument()
+  })
+
   const entries = [
     ['ai103-flashcards-ios', 'IQ Practice'],
     ['agent-azure-toolset', 'Agent Azure Toolset'],

@@ -1,6 +1,6 @@
 # Project portfolio
 
-A React portfolio for presenting approved project stories, images, and videos without connecting to the projects' source repositories. The collection includes real project summaries alongside the fictional Fieldnotes and Signal Board starter examples.
+A React portfolio for presenting approved project stories, images, and videos without connecting to the projects' source repositories. The collection contains real project summaries. Fictional records and media live only in `tests/fixtures/` and are not included in the published site.
 
 ## Privacy first
 
@@ -51,7 +51,7 @@ PORTFOLIO_BASE_PATH=/my-repository/ npm run preview
 1. Create a JSON file in `src/content/projects/`, such as `example-service.json`. No React component needs to be changed.
 2. Add the required fields below. The filename can differ from the slug, but each slug must be unique.
 3. Optionally add approved media under `public/media/` and reference it from the record.
-4. Run `npm run validate` and `npm run dev`, then review the result. Replace or remove the fictional starter records when ready.
+4. Run `npm run validate` and `npm run dev`, then review the result.
 
 This minimal record works without media:
 
@@ -85,7 +85,7 @@ All strings must be nonempty after trimming. Unknown fields are rejected.
 | `media` | No | Object with optional `images` array and `video` object, described below. |
 | `links` | No | Array of objects with required `label` and `url` strings. URLs must use HTTPS and cannot contain embedded credentials. |
 
-Each image object requires `src` and meaningful `alt`; it may also contain `caption`. The video object requires `src` and may contain `poster`, `captions`, and `transcript`. These are the only supported nested fields. See `src/content/projects/signal-board.json` for a working image and video example.
+Each image object requires `src` and meaningful `alt`; it may also contain `caption`. The video object requires `src` and may contain `poster`, `captions`, and `transcript`. These are the only supported nested fields. See `tests/fixtures/projects/signal-board.json` for an image and video example; its media lives in `tests/fixtures/media/` and is copied into isolated browser-test builds only.
 
 ### Media and accessibility
 
@@ -97,7 +97,7 @@ Projects without an image use decorative portfolio illustrations in the catalog 
 - Videos: `.m4v`, `.mp4`, `.ogv`, or `.webm`. Browser codec support varies; test your chosen file.
 - Captions: WebVTT `.vtt` files. Transcripts: nonempty UTF-8 `.txt` files.
 
-Use descriptive image alt text and rights-cleared media. Videos have native controls and do not autoplay. If a video contains meaningful audio, provide both captions and a transcript; the validator checks files you declare but cannot determine whether audio needs them. The fictional example video is silent.
+Use descriptive image alt text and rights-cleared media. Videos have native controls and do not autoplay. If a video contains meaningful audio, provide both captions and a transcript; the validator checks files you declare but cannot determine whether audio needs them. The fictional test-fixture video is silent.
 
 ### Editing on GitHub
 

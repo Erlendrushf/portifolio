@@ -27,6 +27,8 @@ function createWorkspace(name) {
   for (const entry of ['index.html', 'package.json', 'package-lock.json', 'vite.config.js', 'src', 'public', 'scripts']) {
     cpSync(path.join(projectRoot, entry), path.join(workspace, entry), { recursive: true })
   }
+  cpSync(path.join(projectRoot, 'tests/fixtures/projects'), path.join(workspace, 'src/content/projects'), { recursive: true })
+  cpSync(path.join(projectRoot, 'tests/fixtures/media/examples'), path.join(workspace, 'public/media/examples'), { recursive: true })
   symlinkSync(
     path.join(projectRoot, 'node_modules'),
     path.join(workspace, 'node_modules'),
